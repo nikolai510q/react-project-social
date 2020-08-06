@@ -10,22 +10,3 @@
   grid-gap: 10px;
   
 }
-
-.nav {
-  grid-area: n;
-  background-color: yellow;
-}
-
-.header {
-  grid-area: h;
-  background-color: red;
-}
-
-.header img {
-  width: 40px;
-}
-
-.content {
-  grid-area: c;
-  background-color: green;
-}
