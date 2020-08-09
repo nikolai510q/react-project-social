@@ -6,7 +6,10 @@ const Navbar = () => {
     return (
         <nav className={s.nav}>
             <div className={`${s.item} ${s.active}`}>
-                <NavLink to='/profile' activeClassName={s.active}>Profile</NavLink>
+                <NavLink to='/profile' activeClassName={s.active}>
+                    {/* <img src="https://image.flaticon.com/icons/svg/149/149452.svg" /> */}
+                    Profile
+                    </NavLink>
             </div>
             <div className={s.item}>
                 <NavLink to='/dialogs' activeClassName={s.active}>Messages</NavLink>

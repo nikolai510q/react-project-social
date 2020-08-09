@@ -1,0 +1,8 @@
+.item img {
+    display: block;
+    max-width: 100%;
+}
+
+.descriptionBlock {
+    padding: 20px;
+}
