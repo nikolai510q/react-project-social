@@ -8,25 +8,22 @@ import News from './components/News/News';
 import Music from './components/Music/Music';
 import Settings from './components/Settings/Settings';
 import { Route } from 'react-router-dom';
-import { updateNewMessageText } from './redux/state';
 
 const App = (props) => {
+  debugger;
   return (
       <div className='app-wrapper'>
         <Header />
-        <Navbar state={props.state.sidebar}/>
+        <Navbar store={props.store}/>
         <div className='app-wrapper-content'>
           <Route exact path='/profile' 
               render={ () => <Profile 
               profilePage={props.state.profilePage}
-              addPost={props.addPost}
-              updateNewPostText={props.updateNewPostText}
+              dispatch={props.dispatch}
               />} />
           <Route exact path='/dialogs' 
-              render={ () => <Dialogs 
-              state={props.state.dialogsPage}
-              addMessage={props.addMessage}
-              updateNewMessageText={updateNewMessageText}/>} />
+              render={ () => <Dialogs store={props.store}
+              />}/>
           <Route exact path='/news' component={News} />
           <Route exact path='/music' component={Music} />
           <Route exact path='/settings' component={Settings} />
