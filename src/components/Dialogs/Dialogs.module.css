@@ -37,3 +37,26 @@
     padding: 20px;
     background-color: white;
 }
+
+.textareaMessage {
+    border-radius: 10px;
+    margin-top: 15px;
+    margin-left: 100px;
+    width: 550px;
+    height: 40px;
+    padding: 20px;
+}
+
+.sendMessageButton {
+    margin-left: 100px;
+    margin-top: 10px;
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    font-weight: 600;
+}

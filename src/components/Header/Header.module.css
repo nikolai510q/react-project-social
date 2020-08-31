@@ -1,11 +1,17 @@
 .header {
     grid-area: h;
     background-color: grey;
-    vertical-align: middle;
-    text-align: center;
-    height: 110%;
+
   }
   
   .header img {
     width: 40px;
+  }
+
+  .loginBlock {
+    float: right;
+  }
+
+  .loginBlock  a{
+    color: black;
   }

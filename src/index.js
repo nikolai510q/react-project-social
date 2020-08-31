@@ -5,24 +5,29 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import { BrowserRouter } from 'react-router-dom';
+import { Provider } from 'react-redux';
+
+{/* <React.StrictMode> */}
+// </React.StrictMode>
 
 
-let rerenderEntireTree = (state) => {
+//отрисовка дерева 1 раз 
+// let rerenderEntireTree = (state) => {
 ReactDOM.render(
-  <React.StrictMode>
     <BrowserRouter>
-      <App state={state} dispatch={store.dispatch.bind(store)} store={store}/>
-    </BrowserRouter>
-  </React.StrictMode>,
+      <Provider store={store}>
+        <App />
+      </Provider>
+    </BrowserRouter>,
   document.getElementById('root')
 );
-}
+// }
 
 serviceWorker.unregister();
-rerenderEntireTree(store.getState());
+// rerenderEntireTree(store.getState());
 
-
-store.subscribe( () => {
-  let state = store.getState();
-  rerenderEntireTree(state);
-} );
+//connect сам все перерисует
+// store.subscribe( () => {
+//   let state = store.getState();
+//   rerenderEntireTree(state);
+// } );
