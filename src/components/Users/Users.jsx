@@ -2,8 +2,8 @@ import React from 'react';
 import s from './users.module.css';
 import userPhoto from '../../assets/images/userPhotoNull.png';
 import { NavLink } from 'react-router-dom';
-import Axios from 'axios';
-import {followAPI} from '../../api/api';
+//setCurrentPage не прокидывается через пропсы, поэтому стиль спанов не меняется. смотри
+//connect в UsersContainer
 
 let Users = (props) => {
 	let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
@@ -12,7 +12,6 @@ let Users = (props) => {
 	for (let i = 1; i <= pagesCount; i++) {
 		pages.push(i);
 	}
-
 
 	return <div>
 		<div>
@@ -33,34 +32,20 @@ let Users = (props) => {
 				</div>
 				<div>
 					{u.followed
-						? <button disabled={props.followingInProgress.some( id => id === u.id)} onClick={() => { 
-							props.toggleFollowingInProgress(true, u.id);
-							followAPI.unfollow(u.id).then(data => {
-								if (data.resultCode == 0) {
-									props.unfollow(u.id);
-								}
-								props.toggleFollowingInProgress(false, u.id);
-							});
-						}}>Unfollow</button>
-						: <button disabled={props.followingInProgress.some( id => id === u.id)} onClick={() => { 
-							props.toggleFollowingInProgress(true, u.id);
-							followAPI.follow(u.id).then(data => {
-								if (data.resultCode == 0) {
-									props.follow(u.id);
-								}
-								props.toggleFollowingInProgress(false, u.id);
-							});			
-							}}>Follow</button>}
+						? <button disabled={props.followingInProgress.some( id => id === u.id)} 
+											onClick={() => { props.unfollow(u.id) }}>Unfollow</button>
+						: <button disabled={props.followingInProgress.some( id => id === u.id)} 
+											onClick={() => { props.follow(u.id) }}>Follow</button>}
 				</div>
 			</span>
 			<span>
 				<span>
-					<div>{u.name}</div>
-					<div>{u.status}</div>
+					<div>{ u.name }</div>
+					<div>{ u.status }</div>
 				</span>
 				<span>
-					<div>{"u.location.country"}</div>
-					<div>{"u.location.city"}</div>
+					<div>{ "u.location.country" }</div>
+					<div>{ "u.location.city" }</div>
 				</span>
 			</span>
 		</div>)
