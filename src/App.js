@@ -10,6 +10,7 @@ import Settings from './components/Settings/Settings';
 import { Route } from 'react-router-dom';
 import ProfileContainer from './components/Profile/ProfileContainer';
 import HeaderContainer from './components/Header/HeaderContainer';
+import Login from './components/Login/Login';
 
 const App = (props) => {
   return (
@@ -20,6 +21,7 @@ const App = (props) => {
           <Route path='/profile/:userId?' render={ () => <ProfileContainer />} />
           <Route exact path='/dialogs' render={ () => <DialogsContainer />}/>
           <Route exact path='/users' render={ () => <UsersContainer />}/>
+          <Route exact path='/login' render={ () => <Login />}/>
           <Route exact path='/news' component={News} />
           <Route exact path='/music' component={Music} />
           <Route exact path='/settings' component={Settings} />

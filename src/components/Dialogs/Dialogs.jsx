@@ -22,6 +22,8 @@ const Dialogs = (props) => {
 		props.updateNewMessageText(text);
 	}
 
+	// alert(props.isAuth); чекаю залогинен или нет
+
 	return (
 		<div className={s.dialogs}>
 			<div className={s.dialogsItems}>

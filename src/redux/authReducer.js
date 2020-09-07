@@ -37,14 +37,5 @@ export const getAuthUserData = () => (dispatch) => {
 		}
 	});
 }
-//authMeThunkCreator
-// export const authMe = (id, email, login) => {
-// 	return (dispatch) => {
-// 	 authAPI.authMe(id, email, login).then(data => {
-// 			 let { id, email, login } = data.data;
-// 			 dispatch(setUserData(id, email, login));
-// 	 });
-//  }
-// }
 
 export default authReducer;
