@@ -7,10 +7,6 @@ import App from './App';
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 
-{/* <React.StrictMode> */}
-// </React.StrictMode>
-
-
 //отрисовка дерева 1 раз 
 // let rerenderEntireTree = (state) => {
 ReactDOM.render(

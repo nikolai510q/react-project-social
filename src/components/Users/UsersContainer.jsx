@@ -12,29 +12,10 @@ import { withAuthRedirect } from '../../hoc/withAuthRedirect';
 class UsersContainer extends React.Component {
 	componentDidMount() {
 		this.props.getUsers(this.props.currentPage, this.props.pageSize);
-		{
-			//это заменяется thunkcreator§ом
-			// if (this.props.users.length === 0) {
-			//     this.props.toggleIsFetching(true);
-			//     usersAPI.getUsers(this.props.currentPage, this.props.pageSize).then(data => {
-			//         this.props.toggleIsFetching(false);
-			//         this.props.setUsers(data.items);
-			//         this.props.setTotalUsersCount(data.totalCount);
-			//     });
-			// }
-		}
 	}
 
 	onPageChanged = (pageNumber) => {
 		this.props.getUsers(pageNumber, this.props.pageSize);
-		{
-			// this.props.toggleIsFetching(true);
-			// this.props.setCurrentPage(pageNumber);
-			// usersAPI.getUsers(pageNumber, this.props.pageSize).then(data => {
-			// 		this.props.toggleIsFetching(false);
-			// 		this.props.setUsers(data.items);
-			// });
-		}
 	}
 
 	render() {
@@ -64,8 +45,21 @@ let mapStateToProps = (state) => {
 		followingInProgress: state.usersPage.followingInProgress,
 	}
 }
+
+// export default connect(mapStateToProps, {
+// 	follow, unfollow, setCurrentPage,
+// 	toggleFollowingInProgress, getUsers
+// })(UsersContainer);
+
+export default compose(
+	connect(mapStateToProps, {
+		follow, unfollow, setCurrentPage,
+		toggleFollowingInProgress, getUsers
+	}),
+	withAuthRedirect
+)(UsersContainer)
+
 //MDTP old version, refactoring to { } in connect
-{
 	// let mapDispatchToProps = (dispatch) => {
 	//     return {
 	//         follow: (userId) => {
@@ -91,17 +85,3 @@ let mapStateToProps = (state) => {
 	// 			}
 	//     }
 	// }
-}
-
-// export default connect(mapStateToProps, {
-// 	follow, unfollow, setCurrentPage,
-// 	toggleFollowingInProgress, getUsers
-// })(UsersContainer);
-
-export default compose(
-	connect(mapStateToProps, {
-		follow, unfollow, setCurrentPage,
-		toggleFollowingInProgress, getUsers
-	}),
-	withAuthRedirect
-)(UsersContainer)
