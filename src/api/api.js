@@ -42,7 +42,13 @@ export const profileAPI = {
 export const authAPI = {
 	authMe() {
 		return instance.get(`auth/me`)
-	}
+	},
+	// signIn() {
+	// 	return instance.post(`/auth/login`, {})
+	// },
+	// signOut() {
+	// 	return instance.delete(`/auth/login`)
+	// }
 }
 
 

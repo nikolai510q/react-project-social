@@ -1,9 +1,10 @@
 import React from 'react';
-import { Field, reduxForm } from 'redux-form';
+import { Field, reduxForm, reset } from 'redux-form';
 
 const Login = (props) => {
-  const onSubmit = (formData) => {
+  const onSubmit = (formData, dispatch) => {
     console.log(formData)
+    dispatch(reset("login"));
   }
   return (
   <div>
