@@ -1,14 +1,14 @@
 .nav {
 	grid-area: n;
 	background-color: grey;
-	max-height: 40rem;
+	/* max-height: 40rem; */
 }
 
 .item {
 	display: block;
 	max-width: 100%;
 	text-align: center;
-	height: 8rem;
+	height: 6rem;
 }
 
 .item a{
@@ -16,7 +16,8 @@
 	text-decoration: none;
 	display: inline-block;
 	vertical-align: middle;
-	margin: 20px;
+	/* margin: 20px; */
+	padding: 30px;
 }
 
 .item a.active {

@@ -7,7 +7,7 @@ import {
 } from '../../redux/usersReducer';
 import Preloader from '../common/Preloader/Preloader';
 import { compose } from 'redux';
-import { withAuthRedirect } from '../../hoc/withAuthRedirect';
+// import { withAuthRedirect } from '../../hoc/withAuthRedirect'; //PROTECTED USERS BEFORE LOGIN
 
 class UsersContainer extends React.Component {
 	componentDidMount() {
@@ -55,9 +55,9 @@ export default compose(
 	connect(mapStateToProps, {
 		follow, unfollow, setCurrentPage,
 		toggleFollowingInProgress, getUsers
-	}),
-	withAuthRedirect
+	})
 )(UsersContainer)
+//withAuthRedirect in compose
 
 //MDTP old version, refactoring to { } in connect
 	// let mapDispatchToProps = (dispatch) => {
