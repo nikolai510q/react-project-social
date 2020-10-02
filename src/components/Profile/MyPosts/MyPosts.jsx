@@ -5,14 +5,21 @@ import { reset, Field, reduxForm } from 'redux-form';
 import { required, maxLenghtCreator } from '../../../utils/validators/validators';
 import { Element } from '../../common/FormsControls/FormsControls';
 
-const MyPosts = (props) => {
+
+class MyPosts extends React.PureComponent {
+  //PureComponent делает проверку shouldComponentUpdate сам
+  // shouldComponentUpdate(nextProps, nextState) {
+  //   return nextProps !== this.props  || nextState !== this.state  
+  //   //это хуйня какая-то, как может вернуть false, если это 2 разных объекта, свойства которых одинаковы {}!=={}.
+  // }
+  render() {
   const addNewPost = (formData, dispatch) => {
-		console.log(formData)
-		props.addPost(formData.postText);
+		console.log(formData);
+		this.props.addPost(formData.postText);
 		dispatch(reset("addPost"));
   }
   
-  let postElements = props.profilePage.posts
+  let postElements = this.props.profilePage.posts
   .map((p) => <Post message={p.message} key={p.id} likesCount={p.likesCount} />);
   
   return (
@@ -24,6 +31,7 @@ const MyPosts = (props) => {
       <div className={s.posts}> {postElements} </div>
     </div>
   )
+}
 }
 
 const maxLenght10 = maxLenghtCreator(10);
