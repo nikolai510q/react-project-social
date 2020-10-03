@@ -6,20 +6,20 @@ import { required, maxLenghtCreator } from '../../../utils/validators/validators
 import { Element } from '../../common/FormsControls/FormsControls';
 
 
-class MyPosts extends React.PureComponent {
+const MyPosts = React.memo((props) => {
   //PureComponent делает проверку shouldComponentUpdate сам
   // shouldComponentUpdate(nextProps, nextState) {
   //   return nextProps !== this.props  || nextState !== this.state  
   //   //это хуйня какая-то, как может вернуть false, если это 2 разных объекта, свойства которых одинаковы {}!=={}.
   // }
-  render() {
+
   const addNewPost = (formData, dispatch) => {
 		console.log(formData);
-		this.props.addPost(formData.postText);
+		props.addPost(formData.postText);
 		dispatch(reset("addPost"));
   }
   
-  let postElements = this.props.profilePage.posts
+  let postElements = props.profilePage.posts
   .map((p) => <Post message={p.message} key={p.id} likesCount={p.likesCount} />);
   
   return (
@@ -31,8 +31,8 @@ class MyPosts extends React.PureComponent {
       <div className={s.posts}> {postElements} </div>
     </div>
   )
-}
-}
+});
+
 
 const maxLenght10 = maxLenghtCreator(10);
 const Textarea = Element('textarea');
