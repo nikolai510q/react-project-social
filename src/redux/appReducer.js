@@ -3,7 +3,7 @@
 
 import { getAuthUserData } from "./authReducer";
 
-const INITIALIZED_SUCCESS = 'INITIALIZED-SUCCESS';
+const INITIALIZED_SUCCESS = 'social-network/app/INITIALIZED-SUCCESS';
 // const TOGGLE_IS_FETCHING = 'TOGGLE-IS-FETCHING';
 
 let initialState = {

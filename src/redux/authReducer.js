@@ -1,8 +1,8 @@
 import { authAPI } from '../api/api';
 import { stopSubmit } from 'redux-form';
 
-const SET_USER_DATA = 'SET-USER-DATA';
-const TOGGLE_IS_FETCHING = 'TOGGLE-IS-FETCHING';
+const SET_USER_DATA = 'social-network/auth/SET-USER-DATA';
+const TOGGLE_IS_FETCHING = 'social-network/auth/TOGGLE-IS-FETCHING';
 
 let initialState = {
 	id: null,
@@ -29,17 +29,16 @@ export const setUserData = (userId, email, login, isAuth) => ({ type: SET_USER_D
 export const toggleIsFetching = (isFetching) => ({ type: TOGGLE_IS_FETCHING, isFetching });
 //*********************
 
-export const getAuthUserData = () => (dispatch) => {
-	return authAPI.authMe().then(response => {
+export const getAuthUserData = () => async (dispatch) => {
+	let response = await authAPI.authMe();
 		if (response.data.resultCode === 0) {
 			let { id, email, login } = response.data.data;
 			dispatch(setUserData(id, email, login, true));
 		}
-	});
 }
 
-export const signIn = (email, password, rememberMe) => (dispatch) => {
-	authAPI.signIn(email, password, rememberMe).then(response => {
+export const signIn = (email, password, rememberMe) => async (dispatch) => {
+	let response = await authAPI.signIn(email, password, rememberMe);
 		if (response.data.resultCode === 0) {
 			dispatch(getAuthUserData());
 		} else {
@@ -47,14 +46,12 @@ export const signIn = (email, password, rememberMe) => (dispatch) => {
 			debugger
 			dispatch(stopSubmit('login', {_error: message}));
 		}
-	});
 }
 
-export const signOut = () => (dispatch) => {
-	authAPI.signOut().then(response => {
+export const signOut = () => async (dispatch) => {
+	let response = await authAPI.signOut();
 		if (response.data.resultCode === 0) {
 			dispatch(setUserData(null, null, null, false));
 		}
-	});
 }
 export default authReducer;

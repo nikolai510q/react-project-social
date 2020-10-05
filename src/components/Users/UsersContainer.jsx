@@ -1,24 +1,23 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import Users from './Users';
-import {
-	setCurrentPage, toggleFollowingInProgress, requestUsers,
-	follow, unfollow
-} from '../../redux/usersReducer';
+import { setCurrentPage, toggleFollowingInProgress, requestUsers,
+				 follow, unfollow} from '../../redux/usersReducer';
 import { getUsers, getTotalUsersCount, getCurrentPage, 
-	getPageSize, getIsFetching, getFollowingInProgress
-} from '../../redux/usersSelectors';
+				 getPageSize, getIsFetching, getFollowingInProgress} from '../../redux/usersSelectors';
 import Preloader from '../common/Preloader/Preloader';
 import { compose } from 'redux';
 // import { withAuthRedirect } from '../../hoc/withAuthRedirect'; //PROTECTED USERS BEFORE LOGIN
 
 class UsersContainer extends React.Component {
 	componentDidMount() {
-		this.props.requestUsers(this.props.currentPage, this.props.pageSize);
+		const {currentPage, pageSize} = this.props;
+		this.props.requestUsers(currentPage, pageSize);
 	}
 
 	onPageChanged = (pageNumber) => {
-		this.props.requestUsers(pageNumber, this.props.pageSize);
+		const {pageSize} = this.props;
+		this.props.requestUsers(pageNumber, pageSize);
 	}
 
 	render() {
@@ -37,18 +36,6 @@ class UsersContainer extends React.Component {
 	}
 }
 
-
-// let mapStateToProps = (state) => {
-// 	return {
-// 		users: state.usersPage.users,
-// 		pageSize: state.usersPage.pageSize,
-// 		totalUsersCount: state.usersPage.totalUsersCount,
-// 		currentPage: state.usersPage.currentPage,
-// 		isFetching: state.usersPage.isFetching,
-// 		followingInProgress: state.usersPage.followingInProgress,
-// 	}
-// }
-
 let mapStateToProps = (state) => {
 	return {
 		users: getUsers(state),
@@ -60,11 +47,6 @@ let mapStateToProps = (state) => {
 	}
 }
 
-// export default connect(mapStateToProps, {
-// 	follow, unfollow, setCurrentPage,
-// 	toggleFollowingInProgress, getUsers
-// })(UsersContainer);
-
 export default compose(
 	connect(mapStateToProps, {
 		follow, unfollow, setCurrentPage,
@@ -72,30 +54,3 @@ export default compose(
 	})
 )(UsersContainer)
 //withAuthRedirect in compose
-
-//MDTP old version, refactoring to { } in connect
-	// let mapDispatchToProps = (dispatch) => {
-	//     return {
-	//         follow: (userId) => {
-	//             dispatch(followActionCreator(userId));
-	//         },
-	//         unfollow: (userId) => {
-	//             dispatch(unfollowActionCreator(userId));
-	//         },
-	//         setUsers: (users) => {
-	//             dispatch(setUsersActionCreator(users));
-	//         },
-	//         setCurrentPage: (pageNumber) => {
-	//             dispatch(setCurrentPageActionCreator(pageNumber));
-	//         },
-	//         setTotalUsersCount: (totalCount) => {
-	//             dispatch(setTotalUsersCountActionCreator(totalCount));
-	//         },
-	//         toggleIsFetching: (isFetching) => {
-	//             dispatch(toggleIsFetchingActionCreator(isFetching));
-	// 				},
-	// 				toggleFollowingInProgress: (followingInProgress, userId) => {
-	// 					dispatch(toggleFollowingInProgressActionCreator(followingInProgress, userId));
-	// 			}
-	//     }
-	// }

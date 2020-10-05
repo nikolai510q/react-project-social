@@ -13,34 +13,34 @@ import Login from './components/Login/Login';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { initializeApp } from './redux/appReducer';
-import Preloader  from './components/common/Preloader/Preloader';
+import Preloader from './components/common/Preloader/Preloader';
 
 class App extends React.Component {
   componentDidMount() {
-		this.props.initializeApp();
+    this.props.initializeApp();
   }
-  
-  render(){
-    if(!this.props.initialized) {
+
+  render() {
+    if (!this.props.initialized) {
       return <Preloader />
     }
-  
-  return (
+
+    return (
       <div className='app-wrapper'>
         <HeaderContainer />
-        <Navbar store={this.props.store}/>
+        <Navbar store={this.props.store} />
         <div className='app-wrapper-content'>
-          <Route path='/profile/:userId?' render={ () => <ProfileContainer />} />
-          <Route exact path='/dialogs' render={ () => <DialogsContainer />}/>
-          <Route exact path='/users' render={ () => <UsersContainer />}/>
-          <Route exact path='/login' render={ () => <Login />}/>
+          <Route path='/profile/:userId?' render={() => <ProfileContainer />} />
+          <Route exact path='/dialogs' render={() => <DialogsContainer />} />
+          <Route exact path='/users' render={() => <UsersContainer />} />
+          <Route exact path='/login' render={() => <Login />} />
           <Route exact path='/news' component={News} />
           <Route exact path='/music' component={Music} />
           <Route exact path='/settings' component={Settings} />
         </div>
       </div>
-  );
-}
+    );
+  }
 }
 
 const mapStateToProps = (state) => ({
